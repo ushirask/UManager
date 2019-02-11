@@ -11,7 +11,7 @@ document.getElementById('fxbtn').addEventListener('click', _ => {
     dir.click();
 })
 
-document.getElementById('clbtn').addEventListener('click', _ => {
+document.getElementById('seldir').addEventListener('input', _ => {
     dir_path=dir.files[0].path;
     readFolder(dir_path);
 })
