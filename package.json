@@ -1,0 +1,12 @@
+{
+  "name": "desktop_file_manager",
+  "version": "1.0.0",
+  "description": "A file manager with support for tags",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ushira Karunasena",
+  "license": "ISC",
+  "devDependencies": {}
+}

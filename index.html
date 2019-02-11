@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electrofile</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/dist/css/font-awesome.min.css">
+    <script src="render.js"></script>
+</head>
+
+<body>
+<button id="fxbtn" >Select</button>
+<button id="clbtn" >Open</button>
+<button id="back" >Back</button>
+<input id="seldir" type="file" webkitdirectory style="display: none" />
+<div><ol id="listed-files"></ol></div>
+<script>
+    require('./render.js');
+</script>
+</body>
+</html>
