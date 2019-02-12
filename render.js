@@ -34,7 +34,7 @@ function readFolder(path) {
                 
                 if (err) throw err;
                 if (stats.isDirectory()) {
-                    document.getElementById('display-folders').innerHTML += `<li class="list-group-item list-group-item-action" id=${theID} style="cursor:pointer" ondblclick="readFolder(this.id)"><i class="fa fa-folder-open"></i> ${file}</li>`;
+                    document.getElementById('display-folders').innerHTML += `<li class="list-group-item list-group-item-action" id=${theID} style="cursor:pointer" onclick="readFolder(this.id)"><i class="fa fa-folder-open"></i> ${file}</li>`;
                 }
                 else {
                     document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${theID} style="cursor:pointer" ondblclick="openFile(this.id)"><i class="fa fa-file"></i> ${file}</li>`;

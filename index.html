@@ -2,17 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Electrofile</title>
+    <title>UManager</title>
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/dist/css/font-awesome.min.css">
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 12px;
+	        background-color: #F5F5F5;
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	        border-radius: 10px;
+	        background-color: #F5F5F5;
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+	        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	        background-color: rgba(88, 88, 88, 0.705);
+        }
+        
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(85, 85, 85, 0.829); 
+        }
+        
+    </style>
     <script src="render.js"></script>
 </head>
 
 <body>
-<button id="fxbtn" >Select Directory</button>
-<button id="home" >Home</button>
-<input id="seldir" type="file" webkitdirectory style="display: none" />
-<div id="listed-files"></div>
+<div class="container"><div class="row"> 
+    <div class="col-5">
+        <div class="btn-group btn-group-lg" role="group">
+            <button id="fxbtn" type="button" class="btn btn-secondary">Select Directory</button>
+            <button id="home" type="button" class="btn btn-secondary">Home</button>
+        </div>
+        <input id="seldir" type="file" webkitdirectory style="display: none" />
+    </div><div class="col-7" style="max-height:100vh; overflow-y: scroll">
+        <div id="listed-files"></div>
+    </div>
+</div></div>
 <script>
     require('./render.js');
 </script>
