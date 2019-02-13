@@ -4,9 +4,9 @@ var path = require('path');
 
 var dir;
 var dir_path;
-current='\\';
+current='C:\\';
 
-readFolder('\\');
+readFolder('C:\\');
 
 document.getElementById('fxbtn').addEventListener('click', _ => {
     dir=document.getElementById('seldir');
@@ -20,7 +20,7 @@ document.getElementById('seldir').addEventListener('input', _ => {
 })
 
 document.getElementById('home').addEventListener('click', _ => {
-    readFolder('\\');
+    readFolder('C:\\');
 })
 
 document.getElementById('back').addEventListener('click', _ => {
