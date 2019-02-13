@@ -8,5 +8,8 @@
   },
   "author": "Ushira Karunasena",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "electron": "^4.0.4",
+    "electron-packager": "^13.0.1"
+  }
 }
