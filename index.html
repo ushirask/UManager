@@ -36,14 +36,16 @@
 </head>
 
 <body>
-<div class="container"><div class="row"> 
-    <div class="col-5">
+<div class="container" style="margin-top:10px; margin-bottom: 10px">
+<div class="row"> 
+    <div class="col">
         <div class="btn-group btn-group-lg" role="group">
-            <button id="fxbtn" type="button" class="btn btn-secondary">Select Directory</button>
-            <button id="home" type="button" class="btn btn-secondary">Home</button>
+            <button id="fxbtn" type="button" class="btn btn-info">Directory</button>
+            <button id="home" type="button" class="btn btn-info"><i class="fa fa-home"></i> Home</button>
+            <button id="back" type="button" class="btn btn-info">Back</button>
         </div>
         <input id="seldir" type="file" webkitdirectory style="display: none" />
-    </div><div class="col-7" style="max-height:100vh; overflow-y: scroll">
+    </div><div class="col" style="max-height:95vh; overflow-y: scroll">
         <div id="listed-files"></div>
     </div>
 </div></div>
