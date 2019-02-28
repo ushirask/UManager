@@ -8,7 +8,6 @@ current='C:\\';
 
 foldernav.readFolder('C:\\');
 db.createDatabase();
-db.addData("D:\\Ushira\\Sem5\\Ushira_S5\\Computer Security\\Priviledges\\config.txt","config.txt","test1,test2");
 
 document.getElementById('fxbtn').addEventListener('click', _ => {
     dir=document.getElementById('seldir');

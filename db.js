@@ -7,8 +7,9 @@ module.exports={
         
         const fileStore = db.createObjectStore(
             "files",
-            { keyPath: "filepath" }
-        );        
+            { autoIncrement: true }
+        );
+        fileStore.createIndex("pathIndex","filepath");        
     };
     },
 
