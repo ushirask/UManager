@@ -1,5 +1,5 @@
 {
-  "name": "desktop_file_manager",
+  "name": "UManager",
   "version": "1.0.0",
   "description": "A file manager with support for tags",
   "main": "main.js",
