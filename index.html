@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/dist/css/font-awesome.min.css">
     <link rel="stylesheet" href="custom.css">
-    <script src="render.js"></script>
+    
 </head>
 
 <body>
@@ -19,13 +19,17 @@
             <button id="back" type="button" class="btn btn-info">Back</button>
         </div>
         <input id="seldir" type="file" webkitdirectory style="display: none" />
-    </div><div class="col" style="max-height:95vh; overflow-y: scroll">
+        <div id="quick-access">Recent Directories</div>
+    </div>
+    <div class="col" style="max-height:95vh; overflow-y: scroll">
         <div id="listed-files"></div>
     </div>
-</div></div>
-<script>
-    require('./render.js');
-</script>
-    <script src="contextmenu.js"></script>
+</div>
+</div>
+
+<script src="render.js"></script>
+<script src="initial.js"></script>
+<script src="contextmenu.js"></script>
+
 </body>
 </html>

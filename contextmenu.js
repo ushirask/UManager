@@ -1,8 +1,9 @@
 const { remote } = require('electron');
-const { Menu, MenuItem } = remote;
+const { dialog, Menu, MenuItem } = remote;
 const fileop=require('./fileop.js');
+
 const menu = new Menu();
-let rightClickPosition = null
+let rightClickPosition = null;
 
 menu.append(new MenuItem({
      label: 'Add Tag', click(){addTag()} }));
@@ -15,7 +16,6 @@ menu.append(new MenuItem({
 
 document.getElementById('listed-files').addEventListener('contextmenu', (e) => {
     e.preventDefault()
-    console.log("right clicked");
     rightClickPosition = {x: e.x, y: e.y}
     menu.popup({ window: remote.getCurrentWindow() })
 }, false);
@@ -23,7 +23,7 @@ document.getElementById('listed-files').addEventListener('contextmenu', (e) => {
 
 function addTag(){
     var fileid=document.elementFromPoint(rightClickPosition.x,rightClickPosition.y).id;
-    console.log(fileid);
-    db.addData(fileid,"file_name","test1,test2");
+    db.addTagData(fileid,"file_name","test1");
+    console.log(dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"}))
 };
 
