@@ -1,10 +1,11 @@
 let dir;
 let dir_path;
-current='C:\\';
+current='D:\\';
 
-foldernav.readFolder('C:\\');
+foldernav.readFolder('D:\\');
 db.createDatabase();
 shortcuts.showRecent();
+tagop.showTagList();
 
 document.getElementById('seldir').addEventListener('input', _ => {
     dir_path=dir.files[0].path+'\\';
@@ -19,7 +20,11 @@ document.getElementById('fxbtn').addEventListener('click', _ => {
 })
 
 document.getElementById('home').addEventListener('click', _ => {
-    foldernav.readFolder('C:\\');
+    foldernav.readFolder('D:\\');
+})
+
+document.getElementById('createtag').addEventListener('click', _ => {
+    tagop.createTag();
 })
 
 document.getElementById('back').addEventListener('click', _ => {

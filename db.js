@@ -3,23 +3,30 @@ module.exports={
     createDatabase: function(){
         const request = window.indexedDB.open("UManagerDB", 1);
 
-    request.onupgradeneeded = event => { //create new database if not already exists
-        const db = event.target.result;
-        
-        //tags
-        const fileStore = db.createObjectStore(
-            "files",
-            { autoIncrement: true }
-        );
-        fileStore.createIndex("pathIndex","filepath");        
-        fileStore.createIndex("tagIndex","tag");
+        request.onupgradeneeded = event => { //create new database if not already exists
+            const db = event.target.result;
+            
+            //tagged files
+            const fileStore = db.createObjectStore(
+                "files",
+                { autoIncrement: true }
+            );
+            fileStore.createIndex("pathIndex","filepath");        
+            fileStore.createIndex("tagIndex","tag");
 
-        //recently opened directories
-        const recentStore=db.createObjectStore(
-            "recent",
-            {keyPath:"dirpath"}
-        )
-    };
+            //recently opened directories
+            const recentStore=db.createObjectStore(
+                "recent",
+                {keyPath:"dirpath"}
+            );
+            
+            //tags
+            const tagStore=db.createObjectStore(
+                "tags",
+                {keyPath:"tag"}
+            );
+
+        };
     },
 
     addTagData: function(filepath,filename,tag){
@@ -31,9 +38,27 @@ module.exports={
                 "readwrite"
             );
             const fileStore = transaction.objectStore("files");
-        
             fileStore.add(
                 { filepath: filepath, filename: filename, tag: tag }
+            );
+
+            transaction.oncomplete = () => {
+                db.close();
+            };
+        };
+    },
+
+    createTag: function(tag){
+        const request = window.indexedDB.open("UManagerDB", 1);
+        request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(
+                "tags",
+                "readwrite"
+            );
+            const tagStore = transaction.objectStore("tags");
+            tagStore.add(
+                { tag: tag }
             );
 
             transaction.oncomplete = () => {
@@ -62,7 +87,7 @@ module.exports={
         };
     },
 
-    getRecentDirs: function(dirpath){
+    getRecentDirs: function(){
         return new Promise((resolve,reject) => {
             const request = window.indexedDB.open("UManagerDB", 1);
             request.onsuccess = () => {
@@ -76,6 +101,52 @@ module.exports={
                 
                 getDirs.onsuccess=() => {
                     resolve(getDirs.result);
+                }
+
+                transaction.oncomplete = () => {
+                    db.close();
+                };
+            };
+        });
+    },
+
+    getTagged: function(){
+        return new Promise((resolve,reject) => {
+            const request = window.indexedDB.open("UManagerDB", 1);
+            request.onsuccess = () => {
+                const db = request.result;
+                const transaction = db.transaction(
+                    "files",
+                    "readwrite"
+                );
+                const fileStore = transaction.objectStore("files");
+                const tagged = fileStore.getAll();
+                
+                tagged.onsuccess=() => {
+                    resolve(tagged.result);
+                }
+
+                transaction.oncomplete = () => {
+                    db.close();
+                };
+            };
+        });
+    },
+
+    getTagList: function(){
+        return new Promise((resolve,reject) => {
+            const request = window.indexedDB.open("UManagerDB", 1);
+            request.onsuccess = () => {
+                const db = request.result;
+                const transaction = db.transaction(
+                    "tags",
+                    "readonly"
+                );
+                const tagStore= transaction.objectStore("tags");
+                const tagList = tagStore.getAllKeys();
+                
+                tagList.onsuccess=() => {
+                    resolve(tagList.result);
                 }
 
                 transaction.oncomplete = () => {
