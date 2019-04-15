@@ -29,6 +29,7 @@ async function tagFile(){
      title: 'Add Tag',
      label: 'Tag Name:',
      type: 'select',
+     height: 150,
      selectOptions: tagList
      }).then((tag) => {
           if(tag === null) {

@@ -12,6 +12,7 @@ module.exports={
             title: 'Create New Tag',
             label: 'Tag Name:',
             type: 'input',
+            height: 150,
             inputAttrs: {
                 type: 'text',
                 required: true
