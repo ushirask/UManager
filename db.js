@@ -110,21 +110,27 @@ module.exports={
         });
     },
 
-    getTagged: function(){
+    getTagged: function(tag){
         return new Promise((resolve,reject) => {
             const request = window.indexedDB.open("UManagerDB", 1);
             request.onsuccess = () => {
                 const db = request.result;
                 const transaction = db.transaction(
                     "files",
-                    "readwrite"
+                    "readonly"
                 );
-                const fileStore = transaction.objectStore("files");
-                const tagged = fileStore.getAll();
-                
-                tagged.onsuccess=() => {
-                    resolve(tagged.result);
-                }
+                const tagIndex = transaction.objectStore("files").index("tagIndex");
+                const keyRange = IDBKeyRange.only(tag);
+                var tagged=[];
+                tagIndex.openCursor(keyRange).onsuccess = function(event) {
+                    var cursor = event.target.result;
+                    if(cursor) {
+                      tagged.push(cursor.value);
+                      cursor.continue();
+                    } else {
+                      resolve(tagged);
+                    }
+                };
 
                 transaction.oncomplete = () => {
                     db.close();

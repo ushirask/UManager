@@ -24,18 +24,18 @@ document.getElementById('listed-files').addEventListener('contextmenu', (e) => {
 
 async function tagFile(){
     var fileid=document.elementFromPoint(rightClickPosition.x,rightClickPosition.y).id;
+    var file_name=document.elementFromPoint(rightClickPosition.x,rightClickPosition.y).innerText;
     var tagList=await db.getTagList();
     prompt({
      title: 'Add Tag',
      label: 'Tag Name:',
      type: 'select',
-     height: 150,
+     height: 160,
      selectOptions: tagList
      }).then((tag) => {
           if(tag === null) {
-          console.log('user cancelled');
           } else {
-               db.addTagData(fileid,"file_name",tag);
+               db.addTagData(fileid,file_name,tagList[tag]);
                dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});
           }
      }).catch(console.error);
