@@ -1,10 +1,10 @@
 module.exports={
     showTagList: async function(){
         var tagList=await db.getTagList();
-        document.getElementById('quick-access').innerHTML += `<br>`;
+        document.getElementById('tags').innerHTML = ``;
         for (let tag of tagList) {
             let ID=tag.replace(/ /g,'%20');
-            document.getElementById('quick-access').innerHTML +=`<span id=${ID} class="badge badge-pill badge-info"  style="cursor:pointer" onclick="tagop.getTagged(this.id)">${tag}</span>`;
+            document.getElementById('tags').innerHTML +=`<span id=${ID} class="badge badge-pill badge-info"  style="cursor:pointer" onclick="tagop.getTagged(this.id)">${tag}</span>`;
         }
     },
     createTag:function(){
@@ -23,6 +23,7 @@ module.exports={
                  } else {
                       db.createTag(tag);
                       dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});
+                      tagop.showTagList();
                  }
             }).catch(console.error);
     },

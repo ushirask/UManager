@@ -1,6 +1,6 @@
 let dir;
 let dir_path;
-current='D:\\';
+var current='D:\\';
 
 foldernav.readFolder('D:\\');
 db.createDatabase();
@@ -11,6 +11,7 @@ document.getElementById('seldir').addEventListener('input', _ => {
     dir_path=dir.files[0].path+'\\';
     console.log(dir_path);
     db.addRecentDir(dir_path); //add selected directory to recent list
+    shortcuts.showRecent();
     foldernav.readFolder(dir_path);
 })
 

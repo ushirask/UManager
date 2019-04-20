@@ -17,7 +17,7 @@ module.exports={
             //recently opened directories
             const recentStore=db.createObjectStore(
                 "recent",
-                {keyPath:"dirpath"}
+                { autoIncrement: true }
             );
             
             //tags
@@ -97,11 +97,18 @@ module.exports={
                     "readwrite"
                 );
                 const recentStore = transaction.objectStore("recent");
-                const getDirs = recentStore.getAllKeys();
-                
-                getDirs.onsuccess=() => {
-                    resolve(getDirs.result);
-                }
+
+                var quicknav=[];
+                recentStore.openCursor(null,'prev').onsuccess = function(event) {
+                    var cursor = event.target.result;
+                    if((cursor) && (quicknav.length<5)) {
+                      if(!quicknav.includes(cursor.value.dirpath))
+                      quicknav.push(cursor.value.dirpath);
+                      cursor.continue();
+                    } else {
+                      resolve(quicknav);
+                    }
+                };
 
                 transaction.oncomplete = () => {
                     db.close();
@@ -160,5 +167,32 @@ module.exports={
                 };
             };
         });
+    },
+
+    fileDeleteCleanUp: function(filepath){
+        const request = window.indexedDB.open("UManagerDB", 1);
+        request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(
+                "files",
+                "readwrite"
+            );
+            const fileStore = transaction.objectStore("files");
+            const pathIndex = fileStore.index("pathIndex");
+        
+            var del = pathIndex.openKeyCursor(IDBKeyRange.only(filepath)); 
+            del.onsuccess = function() {
+            var cursor = del.result;
+            if (cursor) {
+                fileStore.delete(cursor.primaryKey);
+                cursor.continue;
+            }
+            }
+
+            transaction.oncomplete = () => {
+                db.close();
+            };
+        };
     }
+
 }

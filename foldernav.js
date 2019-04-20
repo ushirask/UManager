@@ -1,4 +1,3 @@
-const fs = require('fs');
 const {shell} = require('electron');
 
 module.exports={

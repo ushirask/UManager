@@ -11,8 +11,6 @@ menu.append(new MenuItem({
 menu.append(new MenuItem({
      type: 'separator' }));
 menu.append(new MenuItem({
-     label: 'Rename',click(){fileop.renamefile(document.elementFromPoint(rightClickPosition.x,rightClickPosition.y).id)}}));
-menu.append(new MenuItem({
      label: 'Delete',click(){fileop.deletefile(document.elementFromPoint(rightClickPosition.x,rightClickPosition.y).id)}}));
 
 document.getElementById('listed-files').addEventListener('contextmenu', (e) => {
