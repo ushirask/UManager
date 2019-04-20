@@ -179,20 +179,49 @@ module.exports={
             );
             const fileStore = transaction.objectStore("files");
             const pathIndex = fileStore.index("pathIndex");
-        
-            var del = pathIndex.openKeyCursor(IDBKeyRange.only(filepath)); 
-            del.onsuccess = function() {
-            var cursor = del.result;
-            if (cursor) {
-                fileStore.delete(cursor.primaryKey);
-                cursor.continue;
-            }
-            }
+            keyRange=IDBKeyRange.only(filepath)
+
+            pathIndex.openKeyCursor(keyRange).onsuccess = function(event) {
+                var cursor = event.target.result;
+                if(cursor) {
+                  fileStore.delete(cursor.primaryKey);
+                  cursor.continue();
+                } 
+            };
 
             transaction.oncomplete = () => {
                 db.close();
             };
         };
-    }
+    },
+
+    tagDelete: function(tag){
+        const request = window.indexedDB.open("UManagerDB", 1);
+        request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(
+                ["files","tags"],
+                "readwrite"
+            );
+            const fileStore = transaction.objectStore("files");
+            const tagStore = transaction.objectStore("tags");
+            const tagIndex = fileStore.index("tagIndex");
+            keyRange=IDBKeyRange.only(tag)
+
+            tagIndex.openKeyCursor(keyRange).onsuccess = function(event) {
+                var cursor = event.target.result;
+                if(cursor) {
+                  fileStore.delete(cursor.primaryKey);
+                  cursor.continue();
+                } 
+            };
+
+            tagStore.delete(tag);
+
+            transaction.oncomplete = () => {
+                db.close();
+            };
+        };
+    },
 
 }

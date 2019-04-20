@@ -18,9 +18,7 @@ module.exports={
                 required: true
             }
             }).then((tag) => {
-                 if(tag === null) {
-                 console.log('user cancelled');
-                 } else {
+                 if(tag != null){
                       db.createTag(tag);
                       dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});
                       tagop.showTagList();
@@ -38,7 +36,24 @@ module.exports={
             ID=value.filepath;
             document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" ondblclick="foldernav.openFile(this.id)"><i class="fa fa-file"></i> ${file}</li>`
         }
-    }
+    },
+
+    deleteTag:async function(){
+        var tagList=await db.getTagList();
+        prompt({
+        title: 'Delete Tag',
+        label: 'Delete Tag:',
+        type: 'select',
+        height: 160,
+        selectOptions: tagList
+        }).then((tag) => {
+            if(tag != null){
+                db.tagDelete(tagList[tag]);
+                dialog.showMessageBox({buttons:["OK"], message:"Tag deleted successfully",title:"UManager",type:"info"});
+                tagop.showTagList();
+            }
+        }).catch(console.error);
+        },
 
 
 }

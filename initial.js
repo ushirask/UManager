@@ -28,6 +28,10 @@ document.getElementById('createtag').addEventListener('click', _ => {
     tagop.createTag();
 })
 
+document.getElementById('deletetag').addEventListener('click', _ => {
+    tagop.deleteTag();
+})
+
 document.getElementById('back').addEventListener('click', _ => {
     console.log(path.dirname(current)+'\\');
     foldernav.readFolder(path.dirname(current)+'\\');
