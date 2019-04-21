@@ -36,19 +36,11 @@ document.getElementById('deletetag').addEventListener('click', _ => {
 document.getElementById('tagmode').addEventListener('click', _ => {
     if(tagmodedisplayed){
         foldernav.readFolder(current);
-        tagmodedisplayed=false;
     }else{
         tagmode.renderFiles(current);
-        tagmodedisplayed=true;
     }
 })
 
 document.getElementById('back').addEventListener('click', _ => {
     foldernav.readFolder(path.dirname(current)+'\\');
-})
-
-document.getElementById('fileList').addEventListener('click', _ => {
-    Array.prototype.forEach.call(tagmode.getSelected(), a => {
-        console.log(a.id);
-    });
 })

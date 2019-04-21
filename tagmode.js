@@ -2,10 +2,11 @@ module.exports={
 
     renderFiles: function (path) { //render the files in the path
         dir_path=path.replace(/%20/g,' '); //add the spaces in path
+        window.tagmodedisplayed=true;
         fs.readdir(dir_path, (err, files) => {
             'use strict';
             if (err) throw  err;
-            document.getElementById('listed-folders').innerHTML = `<ul class="list-group list-group-flush" id="display-folders"></ul>`;
+            document.getElementById('listed-folders').innerHTML = `<ul class="list-group list-group-flush" id="display-folders"></ul><button id="tagSelected" type="button" class="btn btn-primary" onclick="tagmode.getSelected()">Tag Selected</button></ul>`;
             document.getElementById('listed-files').innerHTML = `<ul class="list-group list-group-flush" id="display-files"></ul>`;
             for (let file of files) {
                 fs.stat(dir_path + file, (err, stats) => {
@@ -28,7 +29,25 @@ module.exports={
         }
     },
 
-    getSelected: function(){
-        return document.getElementById('display-files').getElementsByClassName("list-group-item list-group-item-action active");
+    getSelected: async function(){
+        FileList=document.getElementById('display-files').getElementsByClassName("list-group-item list-group-item-action active");
+        var tagList=await db.getTagList();
+        prompt({
+            title: 'Add Tags',
+            label: 'Tag Name:',
+            type: 'select',
+            height: 160,
+            selectOptions: tagList
+            }).then((tag) => {
+                 if(tag === null) {
+                 } else {
+                      Array.prototype.forEach.call(FileList, a => {
+                        db.addTagData(a.id,a.innerText,tagList[tag]);
+                      });
+                      dialog.showMessageBox({buttons:["OK"], message:"Tags added successfully",title:"UManager",type:"info"});
+                      tagmode.renderFiles(current);
+                 }
+        }).catch(console.error);
+        
     }
 }
