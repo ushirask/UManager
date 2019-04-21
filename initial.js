@@ -1,6 +1,7 @@
 let dir;
 let dir_path;
 var current='D:\\';
+var tagmodedisplayed=false;
 
 foldernav.readFolder('D:\\');
 db.createDatabase();
@@ -32,7 +33,22 @@ document.getElementById('deletetag').addEventListener('click', _ => {
     tagop.deleteTag();
 })
 
+document.getElementById('tagmode').addEventListener('click', _ => {
+    if(tagmodedisplayed){
+        foldernav.readFolder(current);
+        tagmodedisplayed=false;
+    }else{
+        tagmode.renderFiles(current);
+        tagmodedisplayed=true;
+    }
+})
+
 document.getElementById('back').addEventListener('click', _ => {
-    console.log(path.dirname(current)+'\\');
     foldernav.readFolder(path.dirname(current)+'\\');
+})
+
+document.getElementById('fileList').addEventListener('click', _ => {
+    Array.prototype.forEach.call(tagmode.getSelected(), a => {
+        console.log(a.id);
+    });
 })

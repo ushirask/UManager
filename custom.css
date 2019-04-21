@@ -22,3 +22,7 @@
 body {
     user-select: none;
 }
+
+.btn:focus {
+    box-shadow: none;
+ }
