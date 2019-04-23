@@ -30,7 +30,7 @@ async function tagFile(){
      type: 'select',
      height: 160,
      selectOptions: tagList
-     }).then((tag) => {
+     },remote.getCurrentWindow()).then((tag) => {
           if(tag === null) {
           } else {
                db.addTagData(fileid,file_name,tagList[tag]);

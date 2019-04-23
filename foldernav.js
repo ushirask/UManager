@@ -1,4 +1,4 @@
-const {shell} = require('electron');
+const {remote} = require('electron');
 
 module.exports={
 
@@ -29,7 +29,7 @@ module.exports={
 
     openFile: function (path) {
         dir_path=path.replace(/%20/g,' ')+'\\';
-        shell.openItem(dir_path);
+        remote.openItem(dir_path);
     }
 
 };

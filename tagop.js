@@ -1,3 +1,5 @@
+const { remote } = require('electron');
+
 module.exports={
     showTagList: async function(){
         var tagList=await db.getTagList();
@@ -17,7 +19,7 @@ module.exports={
                 type: 'text',
                 required: true
             }
-            }).then((tag) => {
+            },remote.getCurrentWindow()).then((tag) => {
                  if(tag != null){
                       db.createTag(tag);
                       dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});

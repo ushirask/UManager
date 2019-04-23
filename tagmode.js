@@ -1,3 +1,5 @@
+const { remote } = require('electron');
+
 module.exports={
 
     renderFiles: function (path) { //render the files in the path
@@ -38,7 +40,7 @@ module.exports={
             type: 'select',
             height: 160,
             selectOptions: tagList
-            }).then((tag) => {
+            },remote.getCurrentWindow()).then((tag) => {
                  if(tag === null) {
                  } else {
                       Array.prototype.forEach.call(FileList, a => {
