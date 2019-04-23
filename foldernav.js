@@ -1,12 +1,12 @@
-const {remote} = require('electron');
+const {shell} = require('electron');
+const FileIcons = require('file-icons-js');
 
 module.exports={
 
-    readFolder: function (path) { //render the files in the path
+    readFolder: function (path) { //render the files in the path    
         dir_path=path.replace(/%20/g,' '); //add the spaces in path
         window.current=dir_path;
         window.tagmodedisplayed=false;
-        console.log(current);
         fs.readdir(dir_path, (err, files) => {
             'use strict';
             if (err) throw  err;
@@ -20,7 +20,8 @@ module.exports={
                         document.getElementById('display-folders').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" onclick="foldernav.readFolder(this.id)"><i class="fa fa-folder-open"></i> ${file}</li>`;
                     }
                     else { //render files
-                        document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" ondblclick="foldernav.openFile(this.id)"><i class="fa fa-file"></i> ${file}</li>`;
+                        var filetype=FileIcons.getClass(file);
+                        document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" ondblclick="foldernav.openFile(this.id)"><i class="${filetype}"></i> ${file}</li>`;
                     }
                 });
             }
@@ -29,7 +30,7 @@ module.exports={
 
     openFile: function (path) {
         dir_path=path.replace(/%20/g,' ')+'\\';
-        remote.openItem(dir_path);
+        shell.openItem(dir_path);
     }
 
 };

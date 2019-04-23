@@ -1,4 +1,5 @@
 const { remote } = require('electron');
+const FileIcons = require('file-icons-js');
 
 module.exports={
 
@@ -12,10 +13,11 @@ module.exports={
             document.getElementById('listed-files').innerHTML = `<ul class="list-group list-group-flush" id="display-files"></ul>`;
             for (let file of files) {
                 fs.stat(dir_path + file, (err, stats) => {
-                    let ID =(dir_path+file+'\\').replace(/ /g,'%20'); //remove space in path
-                    if (err) throw err;
                     if (!stats.isDirectory()) { //render files
-                        document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" onclick="tagmode.clickFile(this.id)"><i class="fa fa-file"></i> ${file}</li>`;
+                        var filetype=FileIcons.getClass(file);
+                        let ID =(dir_path+file+'\\').replace(/ /g,'%20'); //remove space in path
+                        if (err) throw err;
+                        document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" onclick="tagmode.clickFile(this.id)"><i class=${filetype}></i> ${file}</li>`;
                     }
                 });
             }
@@ -39,6 +41,7 @@ module.exports={
             label: 'Tag Name:',
             type: 'select',
             height: 160,
+            customStylesheet: 'css/prompt.css',
             selectOptions: tagList
             },remote.getCurrentWindow()).then((tag) => {
                  if(tag === null) {

@@ -15,6 +15,7 @@ module.exports={
             label: 'Tag Name:',
             type: 'input',
             height: 160,
+            customStylesheet: 'css/prompt.css',
             inputAttrs: {
                 type: 'text',
                 required: true
@@ -47,8 +48,9 @@ module.exports={
         label: 'Delete Tag:',
         type: 'select',
         height: 160,
+        customStylesheet: 'css/prompt.css',
         selectOptions: tagList
-        }).then((tag) => {
+        },remote.getCurrentWindow()).then((tag) => {
             if(tag != null){
                 db.tagDelete(tagList[tag]);
                 dialog.showMessageBox({buttons:["OK"], message:"Tag deleted successfully",title:"UManager",type:"info"});
