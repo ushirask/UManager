@@ -1,7 +1,7 @@
 module.exports={
 
     createDatabase: function(){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
 
         request.onupgradeneeded = event => { //create new database if not already exists
             const db = event.target.result;
@@ -30,7 +30,7 @@ module.exports={
     },
 
     addTagData: function(filepath,filename,tag){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
         request.onsuccess = () => {
             const db = request.result;
             const transaction = db.transaction(
@@ -49,7 +49,7 @@ module.exports={
     },
 
     createTag: function(tag){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
         request.onsuccess = () => {
             const db = request.result;
             const transaction = db.transaction(
@@ -68,7 +68,7 @@ module.exports={
     },
 
     addRecentDir: function(dirpath){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
         request.onsuccess = () => {
             const db = request.result;
             const transaction = db.transaction(
@@ -89,7 +89,7 @@ module.exports={
 
     getRecentDirs: function(){
         return new Promise((resolve,reject) => {
-            const request = window.indexedDB.open("UManagerDB", 1);
+            const request = indexedDB.open("UManagerDB", 1);
             request.onsuccess = () => {
                 const db = request.result;
                 const transaction = db.transaction(
@@ -119,7 +119,7 @@ module.exports={
 
     getTagged: function(tag){
         return new Promise((resolve,reject) => {
-            const request = window.indexedDB.open("UManagerDB", 1);
+            const request = indexedDB.open("UManagerDB", 1);
             request.onsuccess = () => {
                 const db = request.result;
                 const transaction = db.transaction(
@@ -148,7 +148,7 @@ module.exports={
 
     getTagList: function(){
         return new Promise((resolve,reject) => {
-            const request = window.indexedDB.open("UManagerDB", 1);
+            const request = indexedDB.open("UManagerDB", 1);
             request.onsuccess = () => {
                 const db = request.result;
                 const transaction = db.transaction(
@@ -170,7 +170,7 @@ module.exports={
     },
 
     fileDeleteCleanUp: function(filepath){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
         request.onsuccess = () => {
             const db = request.result;
             const transaction = db.transaction(
@@ -196,7 +196,7 @@ module.exports={
     },
 
     tagDelete: function(tag){
-        const request = window.indexedDB.open("UManagerDB", 1);
+        const request = indexedDB.open("UManagerDB", 1);
         request.onsuccess = () => {
             const db = request.result;
             const transaction = db.transaction(

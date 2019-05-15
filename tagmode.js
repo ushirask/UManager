@@ -36,23 +36,27 @@ module.exports={
     getSelected: async function(){
         FileList=document.getElementById('display-files').getElementsByClassName("list-group-item list-group-item-action active");
         var tagList=await db.getTagList();
-        prompt({
-            title: 'Add Tags',
-            label: 'Tag Name:',
-            type: 'select',
-            height: 160,
-            customStylesheet: 'css/prompt.css',
-            selectOptions: tagList
-            },remote.getCurrentWindow()).then((tag) => {
-                 if(tag === null) {
-                 } else {
-                      Array.prototype.forEach.call(FileList, a => {
-                        db.addTagData(a.id,a.innerText,tagList[tag]);
-                      });
-                      dialog.showMessageBox({buttons:["OK"], message:"Tags added successfully",title:"UManager",type:"info"});
-                      tagmode.renderFiles(current);
-                 }
-        }).catch(console.error);
+        if(FileList.length){
+            prompt({
+                title: 'Add Tags',
+                label: 'Tag Name:',
+                type: 'select',
+                height: 160,
+                customStylesheet: 'css/prompt.css',
+                selectOptions: tagList
+                },remote.getCurrentWindow()).then((tag) => {
+                    if(tag === null) {
+                    } else {
+                        Array.prototype.forEach.call(FileList, a => {
+                            db.addTagData(a.id,a.innerText,tagList[tag]);
+                        });
+                        dialog.showMessageBox({buttons:["OK"], message:"Tags added successfully",title:"UManager",type:"info"});
+                        tagmode.renderFiles(current);
+                    }
+            }).catch(console.error);
+        }else{
+            dialog.showMessageBox({buttons:["OK"], message:"No files selected for tagging",title:"UManager",type:"info"});
+        }
         
     }
 }
