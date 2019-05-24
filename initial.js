@@ -45,6 +45,7 @@ document.getElementById('back').addEventListener('click', _ => {
     foldernav.readFolder(path.dirname(current)+'\\');
 })
 
+//dismiss dropdown when clicked outside
 window.onclick = function(event) {
     if (!event.target.matches('#dd-toggle') && !event.target.matches('#searchbox')) {
         var dropdown = document.getElementById("tagdropdown");

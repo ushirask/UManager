@@ -3,10 +3,15 @@ const { remote } = require('electron');
 module.exports={
     showTagList: async function(){
         var tagList=await db.getTagList();
+        var limitedTagList = tagList.slice(0, 5);
         document.getElementById('tags').innerHTML = ``;
-        for (let tag of tagList) {
+        document.getElementById('fulltaglist').innerHTML= ``;
+        for (let tag of limitedTagList) {
             let ID=tag.replace(/ /g,'%20');
             document.getElementById('tags').innerHTML +=`<span id=${ID} class="badge badge-pill badge-info"  style="cursor:pointer" onclick="tagop.getTagged(this.id)">${tag}</span>`;
+        }
+        for (let tag of tagList) {
+            let ID=tag.replace(/ /g,'%20');
             document.getElementById('fulltaglist').innerHTML += `<a id=${ID} onclick="tagop.getTagged(this.id)">${tag}</a>`
         }
 
