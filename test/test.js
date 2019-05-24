@@ -3,7 +3,7 @@ const chai = require('chai');
 require("fake-indexeddb/auto");
 
 
-describe('Test Example', function () {
+describe('UManager database access tests', function () {
     
     before(() => {
       db.createDatabase();
@@ -14,7 +14,7 @@ describe('Test Example', function () {
         
      });
 
-    it('DB is created & accessible',  function () {
+     it('DB is created & accessible',  function () {
       const request = indexedDB.open("UManagerDB", 1);
       var result=[];
       indexedDB.databases().then(r => result=r)
@@ -35,7 +35,7 @@ describe('Test Example', function () {
       chai.assert.deepEqual(tags,['test tag 1']);
     });
 
-    it('tag file', function () {
+    it('Tag file', function () {
       db.addTagData('filepath_x','filename_x','test tag 1')
     }); 
 

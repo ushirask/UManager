@@ -7,7 +7,9 @@ module.exports={
         for (let tag of tagList) {
             let ID=tag.replace(/ /g,'%20');
             document.getElementById('tags').innerHTML +=`<span id=${ID} class="badge badge-pill badge-info"  style="cursor:pointer" onclick="tagop.getTagged(this.id)">${tag}</span>`;
+            //document.getElementById('sel-tag-dd').innerHTML += `<option>${tag}</option>`
         }
+
     },
     createTag:function(){
         prompt({
@@ -31,7 +33,7 @@ module.exports={
 
     getTagged:async function(tag){
         var tagged= await db.getTagged(tag.replace(/%20/g,' '))
-        console.log(tagged)
+        //console.log(tagged)
         document.getElementById('listed-folders').innerHTML = `<ul class="list-group list-group-flush" id="display-folders"></ul>`;
         document.getElementById('listed-files').innerHTML = `<ul class="list-group list-group-flush" id="display-files"></ul>`;
         for(value of tagged){
