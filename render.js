@@ -5,7 +5,7 @@ const db=require('./db.js');
 const shortcuts=require('./shortcuts.js');
 const tagop=require('./tagop.js');
 const tagmode=require('./tagmode.js');
-
+const tagsearch=require('./tagsearch.js');
 
 
 

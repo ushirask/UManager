@@ -44,3 +44,12 @@ document.getElementById('tagmode').addEventListener('click', _ => {
 document.getElementById('back').addEventListener('click', _ => {
     foldernav.readFolder(path.dirname(current)+'\\');
 })
+
+window.onclick = function(event) {
+    if (!event.target.matches('#dd-toggle') && !event.target.matches('#searchbox')) {
+        var dropdown = document.getElementById("tagdropdown");
+        if (dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+        }
+    }
+}

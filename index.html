@@ -21,8 +21,16 @@
         </div><br><br>
         <input id="seldir" type="file" webkitdirectory style="display: none" />
         
-        <div>Tags<br></div>
-        <div id="tags"></div><br>
+        <div id="tags"></div>
+
+        <div id="tag-search">
+            <button id="dd-toggle" onclick="tagsearch.dropdownToggle()" class="btn btn-primary">Search Tags</button>
+            <div id="tagdropdown" class="dropdown-content">
+              <input type="text" placeholder="Search Tag" id="searchbox" onkeyup="tagsearch.searchTags()">
+              <div id=fulltaglist></div>
+            </div>
+        </div><br>
+
         <div class="btn-group btn-group-sm" role="group">
                 <button id="createtag" type="button" class="btn btn-info">Create New Tag</button>
                 <button id="deletetag" type="button" class="btn btn-info">Delete Tag</button>
@@ -30,7 +38,7 @@
         <div class="btn-group btn-group-sm" role="group">
             <button id="tagmode" type="button" class="btn btn-primary">Mode</button>
         </div><br><br>
-        <div>Recent Directories</div>
+        
         <div id="quick-access"></div><br>
     </div>
     <div class="col" style="max-height:95vh; overflow-y: scroll">

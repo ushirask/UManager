@@ -7,7 +7,7 @@ module.exports={
         for (let tag of tagList) {
             let ID=tag.replace(/ /g,'%20');
             document.getElementById('tags').innerHTML +=`<span id=${ID} class="badge badge-pill badge-info"  style="cursor:pointer" onclick="tagop.getTagged(this.id)">${tag}</span>`;
-            //document.getElementById('sel-tag-dd').innerHTML += `<option>${tag}</option>`
+            document.getElementById('fulltaglist').innerHTML += `<a id=${ID} onclick="tagop.getTagged(this.id)">${tag}</a>`
         }
 
     },
