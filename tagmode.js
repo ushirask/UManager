@@ -42,7 +42,6 @@ module.exports={
                 label: 'Tag Name:',
                 type: 'select',
                 height: 160,
-                customStylesheet: 'css/prompt.css',
                 selectOptions: tagList
                 },remote.getCurrentWindow()).then((tag) => {
                     if(tag === null) {
