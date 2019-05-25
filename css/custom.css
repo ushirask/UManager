@@ -21,15 +21,13 @@
 
 body {
     user-select: none;
+    overflow-y:hidden;
 }
 
 .btn:focus {
     box-shadow: none;
  }
 
- 
-  
- 
   
   /* The search field */
   #searchbox {
