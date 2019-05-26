@@ -1,7 +1,7 @@
 let dir;
 let dir_path;
-var current='C:\\';
-var home_dir='C:\\';
+var current='\\';
+var home_dir='\\';
 var tagmodedisplayed=false;
 
 foldernav.readFolder(home_dir);
