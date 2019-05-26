@@ -24,9 +24,9 @@ module.exports={
                     else { //render files
                         var filetype=FileIcons.getClassWithColor(file);
                         document.getElementById('display-files').innerHTML += `<li class="list-group-item list-group-item-action" id=${ID} style="cursor:pointer" ondblclick="foldernav.openFile(this.id)"><span class="${filetype}"></span> ${file}</li>`;
-                    }}catch{console.log(file)}
+                    }}catch{}
                 });
-            }catch{console.log(file);}
+            }catch{continue;}
             }
         });
     },
