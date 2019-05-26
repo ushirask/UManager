@@ -1,6 +1,7 @@
 let dir;
 let dir_path;
 var current='D:\\';
+var home_dir='D:\\';
 var tagmodedisplayed=false;
 
 foldernav.readFolder('D:\\');
@@ -22,7 +23,9 @@ document.getElementById('fxbtn').addEventListener('click', _ => {
 })
 
 document.getElementById('home').addEventListener('click', _ => {
-    foldernav.readFolder('D:\\');
+    if(current!==home_dir){
+        foldernav.readFolder(home_dir);
+    }
 })
 
 document.getElementById('createtag').addEventListener('click', _ => {

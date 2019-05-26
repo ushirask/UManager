@@ -2,7 +2,6 @@ module.exports={
 
     showRecent: async function(){
         var recentList=await db.getRecentDirs();
-        console.log(recentList);
         document.getElementById('quick-access').innerHTML=`<ul class="list-group " id="shortcuts"></ul>`;
         for (let dir of recentList) {
             let ID=(dir+'\\').replace(/ /g,'%20');

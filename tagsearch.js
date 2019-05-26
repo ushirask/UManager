@@ -1,6 +1,8 @@
 module.exports={
     dropdownToggle: function() {
         document.getElementById("tagdropdown").classList.toggle("show");
+        document.getElementById("searchbox").focus();
+
       },
       
       searchTags: function() {
