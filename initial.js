@@ -1,10 +1,10 @@
 let dir;
 let dir_path;
-var current='D:\\';
-var home_dir='D:\\';
+var current='C:\\';
+var home_dir='C:\\';
 var tagmodedisplayed=false;
 
-foldernav.readFolder('D:\\');
+foldernav.readFolder(home_dir);
 db.createDatabase();
 shortcuts.showRecent();
 tagop.showTagList();
