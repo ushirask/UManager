@@ -1,7 +1,7 @@
 const { remote } = require('electron');
 const { dialog, Menu, MenuItem } = remote;
 const prompt = require('electron-prompt');
-const fileop=require('./fileop.js');
+const fileop=require('./application/fileop.js');
 
 const menu = new Menu();
 let rightClickPosition = null;

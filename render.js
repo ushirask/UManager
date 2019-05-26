@@ -1,11 +1,11 @@
 const path = require('path');
 const fs = require('fs');
-const foldernav=require('./foldernav.js');
-const db=require('./db.js');
-const shortcuts=require('./shortcuts.js');
-const tagop=require('./tagop.js');
-const tagmode=require('./tagmode.js');
-const tagsearch=require('./tagsearch.js');
+const foldernav=require('./view/foldernav.js');
+const db=require('./database/db.js');
+const shortcuts=require('./view/shortcuts.js');
+const tagop=require('./application/tagop.js');
+const tagmode=require('./view/tagmode.js');
+const tagsearch=require('./application/tagsearch.js');
 
 
 
