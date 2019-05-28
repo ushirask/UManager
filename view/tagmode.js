@@ -49,7 +49,7 @@ module.exports={
                         Array.prototype.forEach.call(FileList, a => {
                             db.addTagData(a.id,a.innerText,tagList[tag]);
                         });
-                        dialog.showMessageBox({buttons:["OK"], message:"Tags added successfully",title:"UManager",type:"info"});
+                        dialog.showMessageBox(remote.getCurrentWindow(),{buttons:["OK"], message:"Tags added successfully",title:"UManager",type:"info"});
                         tagmode.renderFiles(current);
                     }
             }).catch(console.error);

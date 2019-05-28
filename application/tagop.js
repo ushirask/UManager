@@ -29,7 +29,7 @@ module.exports={
             },remote.getCurrentWindow()).then((tag) => {
                  if(tag != null){
                       db.createTag(tag);
-                      dialog.showMessageBox({buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});
+                      dialog.showMessageBox(remote.getCurrentWindow(),{buttons:["OK"], message:"Tag added successfully",title:"UManager",type:"info"});
                       tagop.showTagList();
                  }
             }).catch(console.error);
@@ -58,7 +58,7 @@ module.exports={
         },remote.getCurrentWindow()).then((tag) => {
             if(tag != null){
                 db.tagDelete(tagList[tag]);
-                dialog.showMessageBox({buttons:["OK"], message:"Tag deleted successfully",title:"UManager",type:"info"});
+                dialog.showMessageBox(remote.getCurrentWindow(),{buttons:["OK"], message:"Tag deleted successfully",title:"UManager",type:"info"});
                 tagop.showTagList();
             }
         }).catch(console.error);
